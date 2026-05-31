@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 7caff4847ff6256dc94f686592d27df00a10fc70
+date: 2026-05-31T03:31:39+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+fix: support interactive git askpass flow
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
