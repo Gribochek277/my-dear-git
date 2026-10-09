@@ -1,0 +1,24 @@
+repository: serhii/my-dear-git
+commit: 2a6a2baf3534edce12d5490846be1c73c91a3fcf
+date: 2026-10-09T22:39:37+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI build pipeline, CLI entry and ink test harness
+- src/tui/cli.tsx: dependency-free argv parsing (tui, --help/-h,
+  --version/-v, --repo <path>), package version lookup and entry guard
+- src/tui/App.tsx: placeholder ink root rendering title, version and repo;
+  quits cleanly on q / Ctrl+C
+- tui-vite.config.ts: ESM bundle dist/tui/cli.mjs with a node shebang,
+  ink/react bundled, node builtins external
+- tsconfig.tui.json, @tui vitest alias, build:tui/dev:tui/typecheck:tui
+  scripts, bin.my-dear-git, engines.node >= 22, CI image node:22
+- tests/unit/tui: cols/rows-aware renderInk harness plus CLI, app,
+  harness and src/tui module-boundary tests
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
