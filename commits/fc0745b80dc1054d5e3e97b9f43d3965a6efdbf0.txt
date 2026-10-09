@@ -1,0 +1,18 @@
+repository: serhii/my-dear-git
+commit: fc0745b80dc1054d5e3e97b9f43d3965a6efdbf0
+date: 2026-10-09T22:49:39+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Raise the vitest per-test timeout for the parallel suite
+A full `npm test` run concurrent with `npm run typecheck` made
+tests/unit/renderer/SettingsPanel.credentials.test.tsx time out at the
+5s default (it takes ~1.5s on its own). The suite now mixes jsdom tests,
+real git subprocesses and the ink harness, so allow 15s per test.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
