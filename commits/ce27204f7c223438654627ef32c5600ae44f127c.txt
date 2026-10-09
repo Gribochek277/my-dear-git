@@ -1,0 +1,16 @@
+repository: serhii/my-dear-git
+commit: ce27204f7c223438654627ef32c5600ae44f127c
+date: 2026-10-09T23:18:10+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Revert "Merge ticket 01: 01-tui-build-cli"
+This reverts commit f221a50ed07c90a3196eb48b29ec71ac50bbc77b, reversing
+changes made to 71a38f9575f0edbe8f940d3f1b99487ea6a3e52b.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
