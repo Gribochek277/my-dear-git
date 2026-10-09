@@ -1,0 +1,35 @@
+repository: serhii/my-dear-git
+commit: ed27b6276cfbc5e2938e0bc9665344f6418ed22c
+date: 2026-10-09T23:58:37+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI mouse input core: parser, hit-test registry, provider
+Terminal mouse support for the TUI, implemented in src/tui/input/ because
+ink 7 has no mouse API:
+
+- mouse-parser.ts: pure SGR (CSI < b;x;y M/m) and X10 (CSI M + 3 bytes)
+  parser with a shift/alt/ctrl decode, 1-based to 0-based coordinates and
+  an incremental buffer for reports split across stdin chunks.
+- mouse-registry.ts: pure hit-test registry with z-order, drag capture,
+  click/double-click (same cell, 400 ms) and wheel routing.
+- terminal-modes.ts: mouse tracking, alternate screen and cursor
+  sequences plus install/restore on unmount, signals and exit.
+- mouse-context.tsx: MouseProvider (stdin listener, terminal modes) and
+  useMouseRegion/useMouse for views; tracking degrades to keyboard-only on
+  a non-interactive stdin.
+
+The terminal modes run in useInsertionEffect so they land before ink paints
+its first frame, and the provider reads stdin with a second 'data' listener
+next to ink's own 'readable' consumer, which keeps useInput working.
+
+63 unit tests: SGR/X10 tables, chunk splitting, hit-test z-order and
+double-click, drag capture, terminal restore, and ink-harness tests for the
+provider (raw CSI sequence dispatch, wheel, unmount) on node env.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
