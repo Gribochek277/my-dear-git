@@ -1,0 +1,31 @@
+repository: serhii/my-dear-git
+commit: 56789c0f4dbcb9ec27a725f5ece0b26079c11db1
+date: 2026-10-09T23:33:13+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add the ASCII commit graph renderer
+Map `computeGraphLayout()` output to per-lane terminal glyphs in
+`src/tui/utils/graph-ascii.ts`: `●`/`○` for the commit dot, `│` for
+pass-through lanes, `╱`/`╲` for merge-in and branch-out diagonals, `─` for
+lanes a wide diagonal crosses and `╳` for a lane that is both left and
+re-entered in one row. Rows are padded to a shared lane count so the columns
+after the graph stay aligned, and every lane keeps the layout colour, mapped
+by palette index to the eight ANSI names in `LANE_COLORS`.
+
+`src/tui/components/CommitGraph.tsx` renders one such row as coloured ink
+text, from a node or from a precomputed cell.
+
+Tests cover the exact glyph strings of the linear, fork/merge, octopus, lane
+reuse, converging-merge and diamond topologies, the colour mapping, padding
+and purity, plus the ink frame with its per-lane ANSI codes.
+
+Also declare the `@tui` path alias in the base tsconfig so editors resolve
+`src/tui` modules that the TUI project already maps.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
