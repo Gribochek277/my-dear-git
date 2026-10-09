@@ -1,0 +1,30 @@
+repository: serhii/my-dear-git
+commit: e14826b2daee515966549282a13d8bf646dba0ea
+date: 2026-10-09T22:31:51+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Decouple GitService from Electron via an injectable credential provider
+- add src/main/services/git/credential-provider.ts: GitCredentialProvider
+  interface, set/get accessors, and an unavailable default whose
+  beginSession throws a structured AUTH_REQUIRED error and whose respond
+  returns a structured failure
+- git-service.ts resolves the provider at call time instead of importing
+  git-askpass, keeping the call order and the retry-without-stored-
+  credentials path unchanged
+- git-askpass.ts implements the interface and registers itself at module
+  load; the Electron main path imports it from src/main/ipc/index.ts
+- route the git:askpass-response IPC channel through the provider
+- add ErrorCode.AUTH_REQUIRED
+- rewrite tests/unit/main/git-service.test.ts to inject a mock provider
+- add tests/unit/tui/git-service-node.test.ts: real temp repo plus a
+  throwing electron mock proving status/diff/log/branches/stage/commit
+  work without Electron and that network operations fail with a
+  structured AUTH_REQUIRED error
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
