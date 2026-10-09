@@ -1,0 +1,32 @@
+repository: serhii/my-dear-git
+commit: 8deb4ec2fb8a8f71232aa48ae56415d8bae411c1
+date: 2026-10-10T02:16:48+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI clone, credential, askpass, theme and font channels
+- app:clone-repo clones through GitService.clone, forwards
+  event:git-progress ({ operation: 'clone', stage, progress }) and cleans
+  up a partial target directory on failure (mirror of git-handlers.ts);
+  the new checkout is registered in recent repos via settings-store.
+- TuiCredentialStore persists { key -> { username, secret } } in
+  credentials.json (mode 0600) in the config dir, using the shared
+  createRemoteCredentialContext key/normalizedUrl shape; no keytar.
+- TuiAskPassManager keeps the temp-script askpass protocol without
+  Electron: prompts become event:git-askpass-request, answers arrive via
+  git:askpass-response, cancellation and saved credentials are handled,
+  and installElectronShim installs it with setCredentialProvider().
+- app:list-saved-credentials / app:delete-saved-credential,
+  app:export-theme / app:import-theme (basename or raw text, cancel ->
+  null), app:list-system-fonts (shared pure parsers) and
+  app:browse-directory are served by the app router.
+- GitService.clone now reads progress from the child's stderr stream:
+  the previous trailing callback only received stdout, so clone progress
+  never reached either front end.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
