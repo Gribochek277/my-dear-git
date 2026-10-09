@@ -1,0 +1,29 @@
+repository: serhii/my-dear-git
+commit: fbb3b06d3faaac3531370838682cee1f223227a4
+date: 2026-10-10T01:30:14+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI app channels for settings, recent repos and open repo
+Mirror repo-manager.ts in a pure Node adapter: settings-store.ts reads and
+writes settings.json in the platform config dir (XDG_CONFIG_HOME, %APPDATA%,
+~/Library/Application Support), deep-merges stored settings over the same
+defaults and keeps the recent-repos list capped and de-duplicated. The adapter
+is stateless, so tests can point HOME at a temp dir between calls.
+
+The new app-router serves app:open-repo, app:open-repo-dialog,
+app:recent-repos, app:remove-recent-repo, app:get-settings, app:save-settings
+and app:set-active-repo; installElectronShim() installs it by default and takes
+an injectable promptPath for the open dialog that cancels when none is given.
+Routers registered or passed at install time still override individual channels.
+
+Tests cover defaults, deep merge, save/read round-trip, cap and de-duplication,
+openRepo success/NOT_A_REPO, the cancel path and the injected prompt, with all
+TUI tests redirected to a temp config root so the real user config is untouched.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
