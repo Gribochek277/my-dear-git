@@ -1,7 +1,7 @@
 > Sanitized mirror of Forgejo `serhii/my-dear-git`. Source code is not published here.
 >
 > Commit texts: `commits/`. Need the code? Email: sergeyalpatov1@gmail.com
-> Source: Forgejo `serhii/my-dear-git` | Synced: 2026-10-05T02:03:36Z
+> Source: Forgejo `serhii/my-dear-git` | Synced: 2026-10-16T02:36:23Z
 
 ---
 
@@ -17,6 +17,7 @@ Desktop Git GUI client built with Electron + React. Feature parity with SourceTr
 ## Features
 
 - Desktop Git GUI built with Electron + React
+- Terminal UI (`my-dear-git tui`) sharing the same stores and Git service
 - Changes view with status, staging, diff, and commit workflow
 - History view with graph, commit details, cherry-pick, and branch filtering
 - Branch, tag, stash, and remote operations from the UI
@@ -25,7 +26,7 @@ Desktop Git GUI client built with Electron + React. Feature parity with SourceTr
 
 ## Requirements
 
-- Node.js 20+
+- Node.js 22+
 - Git installed and available in `PATH`
 
 ## Install dependencies
@@ -56,6 +57,37 @@ If `npm run dev` launches the wrong platform build, your `node_modules/electron`
 rm -rf node_modules/electron
 npm install
 ```
+
+## TUI mode (terminal interface)
+
+My Dear Git also runs in a terminal. It needs **Node.js 22+** (ink 7 is ESM-only)
+and an interactive terminal:
+
+```bash
+npm ci
+npm run build:tui
+node dist/tui/cli.mjs tui --repo ~/projects/my-dear-git
+# or, after `npm link`:
+my-dear-git tui
+```
+
+`npm run dev:tui` builds and launches in one step. The TUI mirrors the GUI's
+layout and chrome, is keyboard-first with full mouse support (click,
+double-click, wheel, drag-resize), reuses the GUI's Zustand stores and the
+shared Git service, and stores its settings in the same `settings.json` the GUI
+uses.
+
+It is **monochrome by default** — state reads through weight, glyphs and inverse
+video, so it works on any terminal theme. Colour is an opt-in with `--color` or
+`MYDEARGIT_TUI_COLOR=1`:
+
+```bash
+my-dear-git tui --color
+MYDEARGIT_TUI_COLOR=1 my-dear-git tui
+```
+
+Full guide, including the layout, keybindings, mouse actions, file locations,
+architecture and limitations: [docs/tui.md](docs/tui.md).
 
 ## Tests
 
