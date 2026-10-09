@@ -1,0 +1,35 @@
+repository: serhii/my-dear-git
+commit: c42ce9b297a4cebfa92b7d11d6ee0d910d82516d
+date: 2026-10-10T02:20:23+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Read mouse reports from ink's own stdin pipeline
+Review round 2 finding: the provider attached a parallel 'data' listener to
+stdin while ink drains the same stream with a 'readable' listener plus
+read(). Mouse input therefore only worked while ink kept draining, and mouse
+escape sequences still reached useInput as opaque input strings.
+
+The provider now wraps stdin.read(): ink gets the chunk back without the
+mouse reports, and every other byte is forwarded unchanged. Exactly one
+consumer drains the stream, so keyboard input can no longer be affected by
+the mouse reader. A report split across reads is held back, and a held tail
+is handed to ink through a synthetic 'readable' event after 20 ms - the same
+window ink uses for a pending escape - so the Esc key still arrives.
+
+Tests: the scanner now returns the forwarded text next to the events, so the
+chunk-splitting tests assert both halves, and a new set of tests drives a real
+paused-mode Readable (isTTY, setRawMode) through ink's render() instead of the
+EventEmitter fake: a useMouseRegion row next to a useInput handler receives a
+raw SGR report and then a key, asserting the click handler got the 0-based
+cell, the report never reached useInput and the key did; a mixed chunk is
+split between the two consumers; a split report is reassembled; a lone ESC
+still becomes the Esc key after the flush window; unmount restores read() and
+the terminal modes.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
