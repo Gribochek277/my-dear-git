@@ -1,0 +1,37 @@
+repository: serhii/my-dear-git
+commit: e043e14270396c9d761ae734d6ad8034b71452d7
+date: 2026-10-09T23:31:37+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add shared git channel router and TUI electron shim
+The TUI reuses the Zustand stores, which talk to the main process only
+through window.electron.invoke. Both front ends now share one channel
+router instead of the TUI growing its own git plumbing:
+
+- src/main/ipc/git-router.ts holds the channel -> GitService mapping,
+  wraps every call into an IpcResponse (toGitError + electron-log like
+  the handlers did) and answers git:* channels with no GitService method
+  (rebase, reset, remote-add, gitflow, ...) with NOT_IMPLEMENTED.
+- git-handlers.ts registers the routed channels by forwarding payloads
+  to the router; the clone handler keeps its progress events and partial
+  directory cleanup. The registered channel set is unchanged, so the GUI
+  behaves exactly as before.
+- src/tui/shim/electron-shim.ts installs globalThis.window.electron in a
+  plain Node process: invoke routes git:* to the router (UNKNOWN_CHANNEL
+  otherwise), on/off keep a listener registry with an exported emit().
+  Routers for the app/dialog channels can be added through
+  registerShimRouter()/installElectronShim({ routers }).
+- ErrorCode gains NOT_IMPLEMENTED and UNKNOWN_CHANNEL.
+
+Tests: git-router delegation and NOT_IMPLEMENTED cases with a mocked
+GitService, an electron-shim integration suite against a real temp
+repository (electron mocked with a throwing factory), and reusable
+temp repo + bare remote fixtures in tests/unit/tui/helpers/repo.ts.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
