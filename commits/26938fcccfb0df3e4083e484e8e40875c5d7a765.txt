@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 26938fcccfb0df3e4083e484e8e40875c5d7a765
+date: 2026-10-10T23:40:40+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Freeze the keymap during border drags and fix the docs section order
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
