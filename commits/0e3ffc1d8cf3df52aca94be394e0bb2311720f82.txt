@@ -1,0 +1,41 @@
+repository: serhii/my-dear-git
+commit: 0e3ffc1d8cf3df52aca94be394e0bb2311720f82
+date: 2026-10-10T12:07:44+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add shell mouse integration: border drag-resize and wheel routing
+Completes the shell-level mouse behaviours on top of the app-shell's
+MouseProvider and layout.ts, without touching the frozen App.tsx:
+
+- BorderHandles (rendered by cli.tsx through App's `decorations` prop) puts
+  one-cell drag handles on the sidebar|main and main|commit borders. Press
+  starts the gesture, motion writes useUiStore.layout live with the same
+  clamps as Ctrl+h/j/k/l, release persists it and Esc restores the layout
+  captured at press. The handle paints the border line in reverse video
+  while the drag is active and an input claim keeps the shell's global Esc
+  cascade inert until it ends.
+- border-resize.ts owns the handle rectangles and the pure drag -> layout
+  patch math; mouse-contract.ts is the single written authority for the
+  click/double-click/wheel/drag rules and the new wheelDeltaOf() helper.
+- MouseRegistry routes a gesture down the region stack (hitTestChain):
+  wheel-only regions let clicks fall through to the pane so the first click
+  focuses it, rows without onWheel let the wheel reach the list below, and
+  overlay shields keep capturing both. Sidebar's list wheel region and the
+  history list now stay active while unfocused, so the wheel scrolls the
+  pane under the pointer without changing focus. Horizontal wheel notches
+  are ignored everywhere instead of being read as a scroll down.
+- History pane click regions (rows, file rows, toolbar buttons) now follow
+  the same two-step focus rule as the sidebar and the commit panel.
+- Tests: pure border geometry/drag/clamp and wheelDeltaOf unit tests,
+  registry chain-routing tests, and integration tests driving synthetic SGR
+  press/motion/release and wheel sequences through the real shell (clamping
+  at the minimums, Esc cancel, drag visual, non-TTY degradation, background
+  pane scrolling, overlay wheel capture, horizontal wheel ignored).
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
