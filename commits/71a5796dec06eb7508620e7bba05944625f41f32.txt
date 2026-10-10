@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: 71a5796dec06eb7508620e7bba05944625f41f32
+date: 2026-10-10T22:59:30+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Restore ticket 16's files lost in the merge
+The reverted first merge (511d0f9) and the rebased branch shared the pre-rebase tip 522390c as merge base, so the second merge resolved as 'ours deleted, theirs unchanged' and dropped every file ticket 16 had not touched after the rebase (BorderHandles, border-resize, mouse-contract and their tests) while keeping one stray import. Restoring src/ and tests/ from the branch tip makes main coherent again; typecheck and the full suite (1125 tests) are green.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
