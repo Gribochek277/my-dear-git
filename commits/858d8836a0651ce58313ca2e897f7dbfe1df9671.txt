@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 858d8836a0651ce58313ca2e897f7dbfe1df9671
+date: 2026-10-10T04:44:40+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Dismiss permanent toasts with Esc and show the hint
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
