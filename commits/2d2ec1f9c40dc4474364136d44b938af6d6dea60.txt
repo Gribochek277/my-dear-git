@@ -1,0 +1,35 @@
+repository: serhii/my-dear-git
+commit: 2d2ec1f9c40dc4474364136d44b938af6d6dea60
+date: 2026-10-10T11:15:30+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Fix the changes pane stage-all semantics and long-list scrolling
+Review findings on the landed status view:
+
+- The Unstage all button shared the toggle path with Stage all, so with an
+  unstaged file present it staged instead of unstaging. The buttons now have
+  dedicated stageAll/unstageAll callbacks (unconditional, like the GUI's two
+  buttons); the a key keeps the toggle behaviour.
+- The cursor-follow effect passed the file index to offsetForCursor while the
+  window scrolls the flat row list, so the highlight drifted up to three rows
+  (the section headers) below the window and stayed off-screen when
+  navigating a list taller than the pane. The selected file is now mapped to
+  its row index before scrolling, the offset handed to the list is clamped,
+  and a test walks 30 files down a 21-row window.
+- d/D now respect canSelectiveDiscard, so a staged or untracked diff cannot
+  be hunk/line discarded (the footer button already checked it).
+- DiffViewer's hOffset pans by code point instead of a UTF-16 slice, so a pan
+  can no longer cut an emoji row in half.
+
+Tests: an Unstage all click that leaves the working tree untouched, a Stage
+all click, the long-list navigation, no-hunk-discard for staged and
+untracked files, and a surrogate-pair pan. Multi-key test sequences now drain
+each press, because ink reports a chunk of several characters as one event.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
