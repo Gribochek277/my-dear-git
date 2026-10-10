@@ -1,0 +1,47 @@
+repository: serhii/my-dear-git
+commit: bffbd8ef41867fd103c050e0f5949edca180513b
+date: 2026-10-10T08:30:04+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI history view: commit list, graph, detail, file history
+Replaces the placeholder HistoryView with the real pane, driven by the
+unmodified stores and the shared git router:
+
+- Commit list with the ASCII graph from utils/graph-ascii (two-line rows:
+  graph + hash + refs + subject over author + relative date), j/k and
+  PgUp/PgDn paging, wheel scrolling, load-more through history-store when
+  the cursor nears the end, and an all-branches/current-branch filter.
+- CommitDetailPanel: changed files with status badges and +/- stats, and
+  the commit diff of the selected file via history-store fetchCommitDiff.
+- Shared DiffViewer + utils/diff-lines: hunk headers, line-number gutter,
+  +/- colours and an offset/height window, presentational so the changes
+  pane can wrap it instead of growing a second renderer.
+- Enter checks the selected commit out behind a Confirm, c cherry-picks it,
+  r opens the soft/mixed/hard prompt only when the router serves git:reset
+  (utils/git-capabilities), f opens the file history overlay built on
+  useFileHistoryStore.
+- Mouse: commit rows select on click and check out on double click, file
+  rows select and open the file history the same way, toolbar buttons and
+  overlay rows click, and the wheel scrolls the commit list, the changed
+  files and the diff without moving the cursor. In-pane prompts render
+  through PaneOverlay (click shield + centered card) because a pane has a
+  fixed height and inline blocks get overwritten by their siblings.
+
+Tests: real temp repos (a merge, a branch-only commit, 50+ commits for the
+paging path) cover rendering, selection, filtering, load-more, checkout,
+cherry-pick, file history and the mouse contract; pure modules get their
+own unit tests. The integration tests wait on store state rather than on
+timing, and widen the registry's double-click window so a loaded machine
+cannot turn two clicks into two single clicks.
+
+Also fixes a real-time race in ticket 07's split-report test: a full
+settle() between the two stdin chunks can outlast the provider's 20 ms
+pending-escape flush under load, so it now yields one macrotask instead.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
