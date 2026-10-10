@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: a005bb1305f05fda3c908309d48818df08542cc4
+date: 2026-10-10T23:14:41+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Focus the history pane before clicking a commit row
+Row regions answer clicks only while their pane is focused (the first click on an unfocused pane focuses it), and the smoke test still had the keyboard in the commit panel. Focus the main pane first and assert the row region is enabled before clicking.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
