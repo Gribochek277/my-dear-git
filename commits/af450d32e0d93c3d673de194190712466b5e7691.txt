@@ -1,0 +1,39 @@
+repository: serhii/my-dear-git
+commit: af450d32e0d93c3d673de194190712466b5e7691
+date: 2026-10-10T11:07:17+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add the terminal dialog framework with clone, settings and theme dialogs
+Dialog framework (src/tui/components/dialogs/): a declarative FormDialog on top
+of the shell's DialogHost/TextPrompt primitives — text/toggle/choice fields,
+Tab and Shift+Tab focus ring, per-field validation with the first invalid field
+focused, Enter submit, single-shot Esc cancel, busy/inactive gating for nested
+prompts, and a mouse region per field row and button.
+
+Path prompt (src/tui/shim/dialog-service.ts + utils/path-input.ts): a queued,
+promise-based prompt that serves the shim's native-dialog stand-ins
+(app:open-repo-dialog, app:browse-directory, app:export-theme,
+app:import-theme) with a live directory listing, ~ expansion, Tab completion
+and validation; cli.tsx wires the adapters into bootstrap.
+
+Core dialogs: CloneDialog (URL, target directory with completion and Browse…,
+optional branch, live event:git-progress progress bar, failure message plus the
+cleanup rule, activates the clone through the repo store), SettingsDialog
+(theme preset, editor, git/ui toggles, maxRecentRepos, persisted through
+useUiStore.saveSettings) and the theme import/export dialogs (export writes the
+settings-file theme to a prompted path; import validates with parseThemeFile
+and applies the tokens in one save).
+
+DialogsLayer mounts all of it through App's decorations seam and owns two
+provisional hotkeys (C clone, , settings); only the topmost dialog of the stack
+is active, so settings -> theme export -> path prompt nests cleanly. The
+sidebar's key handler now ignores keys while an input claim is active, matching
+HistoryView, so a dialog or text field cannot leak keys into the pane behind it.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
