@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 591eaf70c2cc2e448008c0d18cc5c774136a7fb6
+date: 2026-10-10T16:57:19+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Cover the domain dialogs and the askpass host with tests
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
