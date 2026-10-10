@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: cb4121755a198fdefcd3ab9c98aff1f82f9e52f3
+date: 2026-10-10T09:17:10+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Reapply "Merge ticket 11: 11-history-view"
+This reverts commit 5dfa878076c1fa6a96a816d6c635c7f84a6eaf61.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
