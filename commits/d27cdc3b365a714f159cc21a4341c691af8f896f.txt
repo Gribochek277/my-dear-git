@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: d27cdc3b365a714f159cc21a4341c691af8f896f
+date: 2026-10-10T22:00:47+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add an end-to-end TUI smoke test with keys and mouse
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
