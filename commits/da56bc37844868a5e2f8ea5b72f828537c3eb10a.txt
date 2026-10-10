@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: da56bc37844868a5e2f8ea5b72f828537c3eb10a
+date: 2026-10-10T14:26:46+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Stabilize branch-filter test and cap vitest workers
+The branch-filter test clicked regions read straight after the first frame, so a busy machine could aim at an unmeasured 0x0 rect and then time out waiting for a fetch. It now waits for measured rects (waitForRegion), asserts the synchronously-set filter mode before waiting on the frame, and uses explicit 60s frame timeouts. vitest maxWorkers is capped at 4 so concurrent worker suites stop starving each other's git subprocesses. Two full runs and two focused runs are green.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
