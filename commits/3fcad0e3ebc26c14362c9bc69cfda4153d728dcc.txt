@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: 3fcad0e3ebc26c14362c9bc69cfda4153d728dcc
+date: 2026-10-10T20:10:27+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Make TUI temp-dir cleanup non-fatal
+A git child process can still hold files after a test finishes, and rmSync's 10x50ms retry budget was not always enough under parallel suites (ENOTEMPTY failed a merge check). Cleanup now retries for up to ~5s and swallows the final error: a leftover temp dir must never fail the suite.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
