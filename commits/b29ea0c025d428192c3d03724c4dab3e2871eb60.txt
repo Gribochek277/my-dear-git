@@ -1,0 +1,34 @@
+repository: serhii/my-dear-git
+commit: b29ea0c025d428192c3d03724c4dab3e2871eb60
+date: 2026-10-10T12:21:45+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Test the CLI wiring for the border handles and de-flake the split-report test
+Review round 1 asked for the rebase gate to pass again; the branch was
+already rebased onto current main (the gate output was captured before that
+rebase), so this round closes the two gaps the review run exposed:
+
+- BorderHandles is now covered on the path the shipped binary takes:
+  launchTui is called with an injected renderer and a synthetic drag is
+  driven through the shell it renders, asserting the sidebar width lands in
+  useUiStore. Until now only tests that pass `decorations` explicitly
+  exercised the handles.
+- mouse-context's split-report test no longer settles between the two stdin
+  chunks. The harness' stdin reads synchronously inside write(), and a
+  macrotask turn can outlast the provider's 20 ms pending-escape flush on a
+  loaded machine, which hands the held prefix to the keyboard parser and
+  breaks the reassembly (the sibling test already documents this race for
+  the cross-read case, which it still covers with a real paused-mode
+  stream).
+
+npm test: 75 files / 949 tests passed (twice, back to back).
+npm run typecheck: exit 0.
+npm run build:tui: exit 0.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
