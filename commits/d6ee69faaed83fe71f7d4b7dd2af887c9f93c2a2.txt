@@ -1,0 +1,20 @@
+repository: serhii/my-dear-git
+commit: d6ee69faaed83fe71f7d4b7dd2af887c9f93c2a2
+date: 2026-10-10T12:17:20+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Wait for measured mouse regions in the dialog tests
+`useMouseRegion` fills a region's rectangle in a post-layout effect, which can
+lag `settle()` when the whole suite runs under load; aiming a synthetic report
+at an unmeasured 0x0 rectangle silently misses. The shared
+`tests/unit/tui/helpers/mouse.ts` helper waits for the measurement and clicks
+the region's centre, replacing the settle-then-guess cells in the form, path,
+clone and settings dialog tests (the same rule main's mouse-context tests use).
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
