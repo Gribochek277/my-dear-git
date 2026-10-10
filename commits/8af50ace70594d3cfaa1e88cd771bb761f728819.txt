@@ -1,0 +1,30 @@
+repository: serhii/my-dear-git
+commit: 8af50ace70594d3cfaa1e88cd771bb761f728819
+date: 2026-10-10T10:11:40+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Reuse the shared DiffViewer in the changes pane
+The history ticket landed the shared DiffViewer and the diff presentation
+model while this branch was open; the changes pane still carried its own
+renderer and formatter.
+
+- Delete FileDiffView.tsx and utils/diff-rows.ts. The diff body is now the
+  shared DiffViewer, wrapped by the new StatusDiffPane.tsx, which keeps the
+  chrome, the line cursor, the wheel, the horizontal pan and the hunk/line
+  discard targets (utils/diff-cursor.ts, built on the shared row model).
+- Give DiffViewer two optional props the changes pane needs: selectedIndex
+  (highlight the cursor row) and hOffset (pan long lines). Both default to
+  the history pane's plain rendering; tests added next to the component.
+- Use the shared clampOffset and diffSummary instead of a second clamp and
+  a duplicate stats formatter.
+- Move the hunk discard action from a per-hunk button to one pane-footer
+  button acting on the hunk under the cursor, since the shared renderer
+  renders rows without per-row mouse regions.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
