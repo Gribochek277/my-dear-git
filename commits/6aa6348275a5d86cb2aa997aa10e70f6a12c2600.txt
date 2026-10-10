@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: 6aa6348275a5d86cb2aa997aa10e70f6a12c2600
+date: 2026-10-10T23:10:55+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Raise hook timeout and waitFor budget for loaded machines
+A loaded run exceeded vitest's 10s hook timeout in app.test.tsx afterEach and the 10s waitFor default in the e2e smoke helper. hookTimeout is now 30s and waitFor matches waitForFrame's 25s.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
