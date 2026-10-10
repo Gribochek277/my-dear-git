@@ -1,0 +1,32 @@
+repository: serhii/my-dear-git
+commit: 9e3a8faa8ac2aecfb7c04b0f79b016d00a9cbb32
+date: 2026-10-10T08:34:48+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI status view: file sections, staging, diff pane and discard
+Replace the placeholder StatusView with the real changes pane, porting the
+GUI's StatusView/FileListSection/DiffViewer onto ink while driving the
+unmodified useGitStore:
+
+- Staged/Unstaged/Untracked sections with status badges, counts, collapse,
+  a position indicator and a scrollbar.
+- j/k (and PgUp/PgDn/Home/End) row navigation, Enter loads the file diff,
+  Space stages or unstages, a stages/unstages everything, d discards the
+  file after an inline confirm, o opens it in settings.editor.path, r
+  refreshes.
+- Diff pane with hunk headers, +/- colours, a line-number gutter, a line
+  cursor, d/D hunk and line discard, h/l panning and its own scrollbar.
+- Mouse regions for both panes, every file row, section header and button:
+  click selects and loads the diff, double click stages, the wheel scrolls
+  without moving the cursor, and a click is forwarded to the shell panes so
+  the keyboard focus follows it.
+- Pure row/scroll/chrome models under src/tui/utils with unit tests, plus
+  node-env ink tests against temporary repositories.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
