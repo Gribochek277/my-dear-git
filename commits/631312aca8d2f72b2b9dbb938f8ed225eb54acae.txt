@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 631312aca8d2f72b2b9dbb938f8ed225eb54acae
+date: 2026-10-10T03:32:43+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI app shell: layout, panes, focus, status bar, toasts, boot
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
