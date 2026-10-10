@@ -1,0 +1,35 @@
+repository: serhii/my-dear-git
+commit: 522390ca75e6946a2873d195503cda9109663037
+date: 2026-10-10T20:10:14+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Rebase onto ticket 13 and adapt the sidebar/indicator assertions
+Ticket 13 rewrote the sidebar (rows moved to sidebar/SidebarRow.tsx, new
+tags/stashes/worktrees/remotes sections). Conflicts were resolved by taking
+its structure and re-applying this branch's mouse changes:
+
+- the sidebar file comment now describes both the new sections and the
+  always-on wheel region;
+- SidebarRow's wheel handler goes through wheelDeltaOf like every other
+  vertical scroller;
+- ticket 13's "leaves clicks and keys to the shell while the pane is
+  unfocused" test now expects the list wheel region to stay enabled (the
+  wheel never changes focus and must scroll an unfocused pane), matching the
+  contract.
+
+The border-indicator tests no longer compare the handle cells to a snapshot
+taken before the gesture: pane content can still be settling (a loading
+ellipsis disappeared between press and release on the rebased tree). They
+assert the exact glyph while dragging and its absence afterwards, which is
+what the indicator means and stays non-vacuous.
+
+npm test: 84 files / 1105 tests passed.
+npm run typecheck: exit 0.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
