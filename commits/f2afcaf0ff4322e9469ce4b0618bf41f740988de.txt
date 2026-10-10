@@ -1,0 +1,19 @@
+repository: serhii/my-dear-git
+commit: f2afcaf0ff4322e9469ce4b0618bf41f740988de
+date: 2026-10-10T11:26:23+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Assert the no-discard rule only once the diff is loaded
+The staged/untracked hunk-discard tests pressed d while the pane title was
+already correct but the diff was still loading, so the guard was not really
+exercised: they passed even with the canSelectiveDiscard check removed. They
+now wait for a diff line and (for the untracked case) focus the diff pane, so
+d would target a hunk; both fail against the unguarded code.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
