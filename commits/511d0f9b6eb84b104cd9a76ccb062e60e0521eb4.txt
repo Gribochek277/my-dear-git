@@ -1,0 +1,16 @@
+repository: serhii/my-dear-git
+commit: 511d0f9b6eb84b104cd9a76ccb062e60e0521eb4
+date: 2026-10-10T21:07:35+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Revert "Merge ticket 16: 16-mouse-integration-shell"
+This reverts commit aa53f5e0819c25436a56c19ef4e1843ff1a01ac4, reversing
+changes made to 8666f8e2dc8343aa5f153a516c0e68911ad38592.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
