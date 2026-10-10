@@ -1,0 +1,27 @@
+repository: serhii/my-dear-git
+commit: 7e33021921ada0adab101a1428950f1861f8d2df
+date: 2026-10-10T14:34:42+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Align the TUI region waits with main's stabilized timeout budget
+Rebased onto main da56bc3, which fixed the history-view branch-filter flake
+(vitest maxWorkers 4, testTimeout 30 s, waitForFrame 25 s) and added a
+waitForRegion helper with a 3 s budget. Keep those values and match the
+retry budget in the region waits these mouse tests use (200 -> 300 attempts,
+10 ms apart), so a busy machine cannot fail a test before the post-layout
+effect has filled the region rectangle.
+
+No conflicts during the rebase: none of this branch's files overlap main's
+new changes (vitest.config.ts, helpers/ink.tsx, helpers/history.tsx,
+history-view.test.tsx).
+
+npm test: 75 files / 949 tests passed.
+npm run typecheck: exit 0.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
