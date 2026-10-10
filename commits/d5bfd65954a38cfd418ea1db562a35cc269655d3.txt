@@ -1,0 +1,50 @@
+repository: serhii/my-dear-git
+commit: d5bfd65954a38cfd418ea1db562a35cc269655d3
+date: 2026-10-10T20:01:50+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Keep the border handles off interactive cells' gestures
+The handles sit on cells that belong to interactive content: the vertical
+one on the sidebar's last column (branch rows, group headers) and the
+horizontal one on the main pane's last row (the changes pane's footer, with
+the [x] hunk discard button). Registered at BORDER_Z_INDEX they won every
+press, so those cells were mouse-dead: a click selected nothing, the discard
+button never fired, and a one-cell jitter while clicking resized the pane.
+
+The registry now has an explicit drag-handle mode instead of raising or
+lowering z-indexes (which would either kill the drag or kill the clicks):
+
+- `dragHandle: true` marks a region that claims the press for dragging but
+  owns no clicks. On release, if the gesture never became a drag, the click
+  is re-dispatched to the next region under the press cell that answers a
+  pointer gesture — the row, button or pane body the handle overlaps — using
+  the same double-click detection. When nothing below wants it the click is
+  dropped, exactly as if the handle were not there.
+- A drag handle starts dragging only after `dragThreshold` cells of motion
+  (default 2), so a one-cell wobble on the border stays a click instead of
+  resizing. Other regions keep the old immediate-drag behaviour.
+- The handles no longer register `onMove`, so pre-threshold motion cannot
+  write the layout either.
+
+Wheel routing is unchanged: the handles declare no `onWheel`, so the wheel
+still falls through to the list or diff behind them.
+
+Tests (all fail when the mode or the threshold is reverted, pass with it):
+- registry: click and double-click forward through a handle, a sub-threshold
+  wobble stays a click, a real drag suppresses the click, threshold override.
+- shell: clicking the changes pane's [x] hunk discard button through the
+  commit border discards the hunk with a one-cell jitter and leaves
+  changesCommitHeight untouched; a sidebar row click in the border column
+  selects and its double click checks the branch out; a plain click on the
+  border column still focuses the pane below.
+
+npm test: 82 files / 1056 tests passed.
+npm run typecheck: exit 0.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
