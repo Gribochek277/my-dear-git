@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: bada7386a1a088d4c50dc9c11f46c041260c89a2
+date: 2026-10-10T09:21:49+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Stabilize mouse region measurement in TUI tests
+Coordinate-derived clicks now wait for the region's post-layout measurement (waitForRegion) instead of reading getRegion right after settle(). Under parallel suite load the measurement effect can lag settle(), leaving a 0x0 rect that rectContains rejects, which made 'reassembles a report split across stdin chunks' flake and reverted a merge. Two consecutive full-suite runs are green (844 tests).
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
