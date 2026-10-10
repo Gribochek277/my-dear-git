@@ -1,0 +1,42 @@
+repository: serhii/my-dear-git
+commit: 34bdb4236d4d106fab4a59e3252a7ddfb8139a29
+date: 2026-10-10T08:43:14+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add the sidebar branches section with mouse support
+Replaces the placeholder Sidebar with the branch tree the GUI has, driven by
+the unmodified branch-store and remote-store plus the shared
+branch-grouping helpers:
+
+- local/remote prefix groups with collapse, the current-branch marker and
+  ahead/behind counts, scrolled with j/k, PgUp/PgDn or the wheel;
+- Enter checks out (a remote branch asks first and lands on its tracking
+  branch), b creates from the selected branch/commit with an optional
+  checkout, d deletes with a `-D` fallback after the safe delete is refused,
+  r renames, m merges with a merge/no-ff/squash choice behind a confirm,
+  R rebases after a confirm, p pushes and offers --force-with-lease after a
+  rejection, P pulls with an optional rebase, f fetches with --prune;
+- push, pull and fetch ask which remote to use when several are configured;
+- the forms compose the shell's DialogHost/TextPrompt/Confirm primitives;
+- rows, headers and toolbar buttons are mouse regions: click selects,
+  double click activates, a header toggles, buttons act and the wheel
+  scrolls. Regions are enabled only while the pane is focused, so the
+  first click on an unfocused sidebar still focuses the pane.
+
+branch-actions.ts holds the four operations the shared store does not expose
+(delete, rename, rebase, squash) and refreshes through the store's own
+fetchBranches/fetchStatus/fetchCommits, the triple the store runs after a
+checkout. branch-list.ts is the pure model — grouping, collapse state and
+the scroll window — with its own unit tests.
+
+Tests: 17 ink tests against temp repos and a bare remote cover the list
+markers, every key and mouse action, and the real git state each one leaves
+behind; 15 unit tests cover the list model.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
