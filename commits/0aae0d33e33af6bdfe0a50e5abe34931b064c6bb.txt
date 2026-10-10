@@ -1,0 +1,38 @@
+repository: serhii/my-dear-git
+commit: 0aae0d33e33af6bdfe0a50e5abe34931b064c6bb
+date: 2026-10-10T08:43:07+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Implement branch delete, rename, rebase and squash-merge channels
+The sidebar needs branch operations that never had a GitService method, so
+these git:* channels are no longer answered with NOT_IMPLEMENTED:
+
+- deleteBranch: `git branch -d`/`-D` for a local branch, and
+  `git push <remote> --delete <branch>` for `origin/feature` when the
+  `remote` flag is set.
+- renameBranch: `git branch -m`, keeping the reflog and the upstream.
+- rebase: `git rebase <onto>`; a conflict comes back as the usual failed
+  IpcResponse and leaves the repository mid-rebase for the user.
+- merge accepts `squash` next to `noFF`: `git merge --squash` stages the
+  changes and leaves committing to the caller.
+- getBranches fills tracking/ahead/behind for local branches from a single
+  `for-each-ref` pass (a per-branch rev-list would spawn one process per
+  branch), which the sidebar's row markers render.
+
+Checkout also stops guessing `remote/branch` from the name alone: a local
+branch may contain a slash (`feature/login`), so an existing local ref wins
+and only a name without one is checked out as a remote branch with --track.
+Before this, checking out `feature/login` silently created `login`.
+
+Tests: the router test moves the three channels into the delegation table,
+and tests/unit/tui/branch-operations.test.ts drives the installed shim
+against a temp repo plus a bare origin for every operation, for the
+tracking/ahead/behind data and for both checkout rules.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
