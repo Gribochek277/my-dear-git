@@ -1,0 +1,31 @@
+repository: serhii/my-dear-git
+commit: 7a44b5e78f2eab6ff8ef3941b18ecec849a86f5b
+date: 2026-10-10T17:57:49+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Fix tag checkout hijacked by the remote-branch DWIM
+`GitService.checkout` treated any `name/with/slash` as `<remote>/<branch>`
+before plain resolution, so checking out a tag such as `release/v1.0` tried a
+`v1.0` branch (silently switching to it when one existed) or failed on the
+`-b v1.0 --track release/v1.0` fallback. The sidebar's tag row, its detached
+HEAD warning and its success toast could therefore lie, and the GUI's tag
+checkout had the same bug.
+
+The service now resolves the exact ref before the heuristic: an existing local
+branch of that full name wins (as in git), a tag is checked out with
+`checkout --detach refs/tags/<name>` (never through the DWIM, so it cannot
+become a `tags/<name>` branch), and only then does the remote DWIM run. The
+`refExists` helper is shared by the branch and tag probes.
+
+Covered by a real-repository test (slashed tag detaches HEAD at the tag commit,
+creates neither a `v1.0` nor a `tags/v1.0` branch, and wins over a same-named
+local branch), mocked router-level tests for all three resolution paths, and the
+sidebar integration test now checks out `release/v1.0`.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
