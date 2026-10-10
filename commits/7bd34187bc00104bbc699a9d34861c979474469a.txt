@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 7bd34187bc00104bbc699a9d34861c979474469a
+date: 2026-10-10T18:12:50+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Make the askpass queue test's prompt order deterministic
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
