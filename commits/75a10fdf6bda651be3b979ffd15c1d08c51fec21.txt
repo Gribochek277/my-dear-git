@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: 75a10fdf6bda651be3b979ffd15c1d08c51fec21
+date: 2026-10-10T09:24:42+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Retry transient temp-dir removal races in TUI test fixtures
+A rebase/push child process can still be writing inside a fixture when a test ends, making cleanupTempDirs throw ENOTEMPTY and reverting a merge. fs.rmSync now retries EBUSY/ENOTEMPTY with a 50ms backoff. Two consecutive full-suite runs are green (893 tests).
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
