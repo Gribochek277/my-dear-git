@@ -1,0 +1,41 @@
+repository: serhii/my-dear-git
+commit: f5c8eedbadd6deb10a28b4436d1ec0dce119c1fa
+date: 2026-10-10T09:54:47+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add the commit panel: message input, commit, amend, sign-off
+Ports the GUI CommitPanel onto the unmodified useGitStore: the message lives in
+`commitMessage` (edited with ink-text-input so the cursor is editable inside the
+text), amend is `toggleAmend()` with its `git:config-get` pre-fill, and the
+commit itself is `commitChanges()`, so the message clears and the status count
+refreshes on its own. The button is inert without staged files or a message,
+exactly like the GUI's `canCommit`.
+
+Sign-off has no store field (the GUI never exposed one), so the toggle is local
+and the run goes through the same `git:commit` channel, followed by the store's
+own post-commit bookkeeping applied through its public actions.
+
+Keyboard: Enter/Ctrl+S commit, Ctrl+A toggles amend, Ctrl+O toggles sign-off and
+Esc/Tab give the keyboard back to the shell. ink-text-input inserts the letter
+ink decodes from a control byte and cannot be stopped from outside, so a guard
+rendered ahead of it runs the chords and marks the event the input must ignore;
+the same guard keeps the caret at the end of a message a commit or the amend
+pre-fill set from outside.
+
+Mouse: the field, both toggles and the Commit button register regions, enabled
+only while the pane is focused (the shell's click-to-focus rule), so one click on
+an unfocused panel focuses it and arms the field.
+
+Tests: 14 integration cases over real temp repos (Enter, Ctrl+S, amend rewrite,
+sign-off trailer, inert empty/no-staged commits, button and toggle clicks, field
+click, Esc/Tab blur, in-flight spinner, real gpg failure) plus the pure form
+rules. The shell's Tab cycle test gains one press because the commit pane now
+holds a text field, which owns the keyboard through the shared claim.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
