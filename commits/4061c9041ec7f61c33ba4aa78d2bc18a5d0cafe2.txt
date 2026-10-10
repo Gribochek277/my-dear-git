@@ -1,0 +1,40 @@
+repository: serhii/my-dear-git
+commit: 4061c9041ec7f61c33ba4aa78d2bc18a5d0cafe2
+date: 2026-10-10T13:57:10+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Keep nested dialogs' shields and rows from leaking clicks
+Review findings: two hosts are mounted at once for nested flows (settings →
+theme export/import, clone → Browse…), and a covered dialog keeps rendering
+above the covering shield.
+
+- DialogHost names its click shield per instance
+  (`DIALOG_SHIELD_REGION_PREFIX` + `useId()`). The shared `dialog-shield` id let
+  the inner host's unmount unregister the outer host's shield, after which
+  clicks and wheel events fell through to the panes behind an open dialog.
+- ToggleRow/ChoiceRow/InlineChoice take `enabled`; FormDialog passes its
+  `interactive` state and also disables its own buttons while inactive, and the
+  auxiliary buttons (clone `Browse…`, settings `Export theme…`/`Import theme…`)
+  follow. A covered dialog's rows sit above the covering shield, so without
+  this a click mutated its form values or pushed another dialog.
+- Confirm gets the same treatment (buttons enabled only while active) and
+  per-instance button region ids, so stacked confirmations cannot unregister
+  each other's buttons.
+
+Tests: clicks behind a dialog after a nested dialog/prompt closed (settings and
+clone), clicks on a covered dialog's toggle and buttons, and an inactive
+`Confirm`; all three fail against the pre-fix code. `helpers/mouse.tsx` gained
+`BackgroundPane` and `waitForRegionMatching`, and the shared-primitives test
+matches the shield id by prefix.
+
+Also stabilised the history-view branch-filter tests found flaky in the full
+suite: which rows are visible depends on commit dates, so they assert on the
+loaded page and wait for measured regions.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
