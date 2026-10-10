@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: dc1217198d42dc564dfb695647eebb8e28086f32
+date: 2026-10-10T22:56:19+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add a deterministic pending-flush window to MouseProvider tests
+The lone-ESC test asserted the held state after settle(), which can exceed the 20ms flush window on a loaded machine. MouseProvider now accepts pendingFlushMs (test seam) and the test proves holding with a long window and delivery with the default one.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
