@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 63d76b381ae61ab23b81139f4a5f0e0c7ddd4d0f
+date: 2026-10-10T22:17:59+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Document the TUI keyboard contract in the architecture notes
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
