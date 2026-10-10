@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: e97ac8a93a6aeba9d96ece1de5185105e24d0399
+date: 2026-10-10T13:31:55+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Raise test and waitForFrame timeouts for parallel worker suites
+Several workers run the full vitest suite concurrently in their worktrees, so git subprocesses can exceed the 15s test timeout and the 10s frame wait. testTimeout is now 30s and waitForFrame defaults to 25s; failures still surface on real hangs.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
