@@ -1,0 +1,33 @@
+repository: serhii/my-dear-git
+commit: 6ca56084ae4ad8d3d5c362519ebce5563e6f5413
+date: 2026-10-10T17:19:16+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add TUI sidebar sections: tags, stashes, worktrees, remotes
+The sidebar becomes one scrollable list of five collapsible sections with
+counts. Tags: create at HEAD or a commit (name/message), delete with confirm,
+push to a remote, check out with a detached-HEAD warning. Stashes: push with a
+message and untracked files, pop, apply without dropping, drop with confirm.
+Worktrees: list with path/branch/main marker, add with a create-branch option,
+remove with a force fallback, open as the active repository. Remotes: list with
+fetch/push URLs, add, remove with confirm, fetch.
+
+The toolbar follows the focused section and every mouse action has a keyboard
+equivalent: click selects, double click activates (checkout/pop/open/fetch),
+headers toggle, buttons press, the wheel scrolls.
+
+Shared git plumbing grows the three operations the stores lacked: git:stash-apply
+(apply without dropping), git:remote-add and git:remote-remove, all routed
+through the shared git-router so the GUI gains them too. Two shared bugs that
+blocked the sections are fixed: `git tag --format` needs the for-each-ref `%00`
+escape (`%x00` came through literally, so every tag field landed in the name),
+and `git worktree add -b <branch> <path> <branch>` passed the new branch name as
+a start point (invalid reference) instead of starting at HEAD.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
