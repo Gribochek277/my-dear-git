@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: a11a6c49476dd5561c1481c64ad9f0017ac4f0f6
+date: 2026-10-10T09:22:50+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Reapply "Merge ticket 12: 12-sidebar-branches"
+This reverts commit f9945f6d491eba5ade5d10aedb973bfccfbdbf0b.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
