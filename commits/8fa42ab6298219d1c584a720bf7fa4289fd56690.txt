@@ -1,0 +1,45 @@
+repository: serhii/my-dear-git
+commit: 8fa42ab6298219d1c584a720bf7fa4289fd56690
+date: 2026-10-10T16:20:45+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Mirror only the declared handlers in useMouseRegion's proxy
+Root cause found by the reviewer: useMouseRegion's registered proxy defined
+all nine gesture handlers unconditionally, each forwarding to
+handlersRef.current[key]?.(). The registry decides which gestures fall
+through by checking whether a region *declares* a handler, so for every
+region created through useMouseRegion the documented fall-through was dead
+code. Two regressions followed:
+
+- the always-enabled wheel-only sidebar/history list regions captured
+  presses and dispatched a no-op click, so clicking the body of an unfocused
+  pane no longer focused it;
+- the border strips declared no onWheel but their proxy did, so the wheel
+  over the border column/row was swallowed instead of reaching the list or
+  diff behind it.
+
+The proxy now mirrors exactly the keys the component passed. The declared
+key set is a memo signature, so a region whose key set changes re-registers
+with the gestures it now answers; handler identity changes still go through
+handlersRef without re-registering. Drag and double-click behaviour is
+unchanged (the handle regions keep declaring onPress/onMove/onDrag/
+onRelease/onDragEnd).
+
+Tests (all three fail when the fix is reverted, pass with it):
+- mouse-context: a wheel-only region stacked over a clickable pane lets the
+  press fall through to the pane and still takes the wheel itself.
+- app: clicking the list body of an unfocused sidebar focuses sidebar, and
+  the same for the history list focusing main.
+- border-handles: both handle regions declare no onWheel, and a wheel over
+  the sidebar border column scrolls the list behind the handle.
+
+npm test: 77 files / 1013 tests passed.
+npm run typecheck: exit 0.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
