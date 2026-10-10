@@ -1,0 +1,35 @@
+repository: serhii/my-dear-git
+commit: da7784e8b0b7b7b1eb9dc653349e888c9808af0a
+date: 2026-10-10T15:21:47+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Assert the border indicator on the handle's own cells
+Ticket 09's changes pane now paints a '│' divider between its file list and
+its diff, so the border-handle tests' frame-wide `not.toContain('│')` /
+`not.toContain('─')` assertions were no longer valid. Every indicator check
+now targets the handle's own cells (glyphAt/columnCells/rowSlice helpers),
+and the "cleared" state compares those cells with the pre-gesture frame
+instead of searching the whole frame:
+
+- appearance: the handle column is exactly ['│', '│'] while the gesture is
+  active, the commit handle row is exactly a run of '─';
+- disappearance: the same cells equal their pre-gesture values after the
+  release, and the sidebar handle's original column is unpainted after Esc
+  while the handle had followed the border and painted its new column
+  mid-drag;
+- tracking off: the attempted drag leaves the handle cells byte-identical.
+
+Mutation-checked: removing the painted bar makes the appearance assertion
+fail, and painting it unconditionally makes the cleared assertion fail, so
+the tests still prove both directions.
+
+npm test: 77 files / 1010 tests passed.
+npm run typecheck: exit 0.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
