@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 2c5502ee63eef778d480d58633d70e407b31fdad
+date: 2026-10-10T19:41:29+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Keep sidebar forms inert while the askpass prompt is pending
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
