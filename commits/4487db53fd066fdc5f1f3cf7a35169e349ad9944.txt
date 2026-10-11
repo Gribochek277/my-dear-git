@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: 4487db53fd066fdc5f1f3cf7a35169e349ad9944
+date: 2026-10-11T17:34:37+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Poll for a clean working tree after the stash dialog test
+The stash entry can appear before git finishes resetting the working tree, which flaked the suite under parallel load. The assertion now waits for the porcelain status to become empty.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
