@@ -1,0 +1,34 @@
+repository: serhii/my-dear-git
+commit: e1d2f2c525a3f280d0606a0d32bf473a1ee4e869
+date: 2026-10-11T10:02:11+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Rebuild the TUI shell to the GUI-parity layout
+Mirror AppLayout.tsx in monochrome: a repo bar, a framed sidebar with a
+draggable divider, a right column with a toolbar row, Changes|History tabs
+and the framed content, and a one-row truncated status bar.
+
+- layout.ts owns the whole geometry: it resolves ui-store pixel sizes into
+  cells that tile the terminal exactly (sidebar >= 16, right column >= 24,
+  commit panel >= 3 rows), exposes absolute pane/divider rectangles and the
+  keyboard + drag resize math with the same clamps.
+- App.tsx composes the shell from those numbers, cycles Tab/Shift+Tab over
+  the physical panes (files/diff/commit or list/detail plus sidebar and
+  status), and hands the exact content rectangle to the views.
+- StatusView and HistoryView render their columns as titled Panels with the
+  commit panel pinned under the file list and LayoutDividers between the
+  panes; LayoutDivider wires a gesture to the ui-store (live update, release
+  commits, Esc restores).
+- RepoBar and a placeholder Toolbar are new; the status bar gains
+  ahead/behind and a busy spinner; Panel gained a clip opt-out for the
+  sidebar's full-screen dialogs.
+- Removes the obsolete BorderHandles/border-resize/shell-focus modules and
+  updates docs/tui-architecture.md with the parity layout.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
