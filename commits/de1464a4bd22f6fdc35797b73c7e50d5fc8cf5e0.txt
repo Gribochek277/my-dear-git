@@ -1,0 +1,18 @@
+repository: serhii/my-dear-git
+commit: de1464a4bd22f6fdc35797b73c7e50d5fc8cf5e0
+date: 2026-10-11T03:17:04+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Document TUI mode in docs/tui.md and link it from the README
+The guide covers the install/build/run commands, the live keybindings and
+mouse actions with their keyboard equivalents, the settings and credential
+file locations, the single-active-repo model, the shim architecture and the
+known limitations.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
