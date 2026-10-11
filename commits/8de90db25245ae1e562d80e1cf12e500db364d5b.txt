@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 8de90db25245ae1e562d80e1cf12e500db364d5b
+date: 2026-10-11T11:25:07+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Document the TUI toolbar buttons and their Alt chords
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
