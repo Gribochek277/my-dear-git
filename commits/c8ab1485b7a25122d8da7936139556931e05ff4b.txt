@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: c8ab1485b7a25122d8da7936139556931e05ff4b
+date: 2026-10-11T22:29:04+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Merge ticket 28: 28-tui-docs-parity
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
