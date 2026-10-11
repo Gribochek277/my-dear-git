@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: dd3499e76b682cdd1d4dc1f82d4c6bd2b494327a
+date: 2026-10-11T11:25:07+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Build the TUI toolbar: GUI-parity buttons, Alt chords and dialogs
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
