@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 8e4c846ae453926bb3d01fd8bd7c94a9ed1cded7
+date: 2026-10-11T10:29:50+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Merge ticket 21: 21-tui-shell-parity
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
