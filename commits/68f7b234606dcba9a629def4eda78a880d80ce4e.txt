@@ -1,0 +1,40 @@
+repository: serhii/my-dear-git
+commit: 68f7b234606dcba9a629def4eda78a880d80ce4e
+date: 2026-10-11T20:57:21+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Give the TUI status bar the repository path instead of a hint strip
+The row spent its cells on a capped key-hint strip, so the repository path
+collapsed to `/…` on an 80-column terminal even though the keys already have
+two homes: the pane footers (file list, diff, commit) and the `?` help overlay.
+The strip is gone and the row reads:
+
+  name | path  ⎇ branch  ↑n ↓m  spinner  focus: <pane>  mouse: on/off   [,] Settings
+
+- StatusBar no longer takes a `hint`, and statusBarColumns() splits the width
+  between the repository name, the path and the git-state cluster with the
+  settings affordance pinned to the right edge and the state cluster reserved at
+  its natural width. The path yields first and is the only segment trimmed from
+  the left (`…/code/my-repo`), so a deep path keeps its tail; every segment clips
+  on its own with `…` and the row stays one line at any width.
+- The registry's footer-strip helpers (`footerHints()`, `FOOTER_ANCHOR_IDS`,
+  `KeymapHint`) lose their only caller and go with the strip; only the help
+  grouping remains, and the comments that mentioned the footer hint now point at
+  the `?` overlay.
+- The quit tests that synchronised on the hint text now ask the keymap registry
+  (`bindingAvailable`) or the status bar's `focus:` segment, which follows the
+  pane sub-focus.
+
+Tests: the full path is visible at 120 columns, the row stays one line at
+80/120/200 columns, the path is trimmed from the left at 80 columns, no hint
+text is left on the row, the settings affordance is still labelled and
+clickable, and statusBarColumns() is covered for its path -> state -> name
+yield order.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
