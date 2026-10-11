@@ -1,0 +1,18 @@
+repository: serhii/my-dear-git
+commit: 234b47577932f49b7f6c98df075a6852b11011cb
+date: 2026-10-11T10:02:17+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Cap the TUI temp-dir retry budget at its documented 5 seconds
+fs.rmSync backs off linearly (retryDelay * attempt), so 100 retries at
+50 ms sum to ~252 s: a fixture that cannot be removed stalls the whole
+test hook for four minutes instead of giving up as the comment promises.
+20 retries at 25 ms is the intended ~5 s budget.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
