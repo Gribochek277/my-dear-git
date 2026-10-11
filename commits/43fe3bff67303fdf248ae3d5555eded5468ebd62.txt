@@ -1,0 +1,40 @@
+repository: serhii/my-dear-git
+commit: 43fe3bff67303fdf248ae3d5555eded5468ebd62
+date: 2026-10-11T17:20:33+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Give the TUI status bar, repo bar and welcome the GUI chrome
+Mirror the GUI's StatusBar/RepoTabs/WelcomeScreen trio in the parity shell:
+
+- StatusBar is one truncated line on a fixed row: `repo-name | path` on the
+  left, then branch, ahead/behind, the focused pane, the busy spinner,
+  `mouse: on/off` and a clickable `[s] Settings` cell pinned to the right
+  edge. statusBarColumns() owns the widths (settings first, then the state
+  cluster, then the repo line, then the hint strip capped at 48 cells), so a
+  narrow terminal truncates the segments with `…` instead of wrapping and the
+  settings affordance never disappears.
+- RepoBar gains the close affordance next to the switcher hint: `[x] close`
+  is a mouse region and `Ctrl+W` closes the active repository (back to the
+  welcome state or the next open one); the row still opens the switcher on
+  click. The welcome state keeps showing the app title instead.
+- Welcome renders the GUI's action row on the shell's welcome card: `[o] Open
+  Repository` (the shim's open-repo dialog), `[c] Clone Repository` and `[s]
+  Settings`, each a mouse region with its key. The repo switcher reuses the
+  bare list, unchanged.
+- DialogsLayer's DIALOG_KEYS gain `s` (settings, global) and `c` (clone,
+  welcome state only, where no pane owns the key) and per-key gates, so the
+  visible affordances and the keyboard reach the same dialogs.
+
+Tests (node env, temp HOME + temp repo) cover the status bar content, the
+column budget, single-line truncation at 48/80/200 columns, the repo bar on
+and off, close by click and Ctrl+W, recent-repo navigation by key and double
+click, the welcome entries opening clone/settings/open-by-path, and the
+settings round-trip through the shim to the config file.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
