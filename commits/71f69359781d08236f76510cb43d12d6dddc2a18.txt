@@ -1,0 +1,38 @@
+repository: serhii/my-dear-git
+commit: 71f69359781d08236f76510cb43d12d6dddc2a18
+date: 2026-10-11T11:16:55+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Rebuild the TUI history view to the GUI-parity layout
+The history pane now matches the GUI history view cell for cell:
+
+- the commit-list column keeps its framed `History (n)` panel and gains the
+  GUI filter bar (`All branches` / `Current branch`, active bold+inverse,
+  inactive dim) with the refresh action and the checked-out branch;
+- the working tree's `Uncommitted changes` row sits above the graph while the
+  tree is dirty and is the cursor's top position (`k` from the newest commit);
+  selecting it shows the GUI's `Switch to Changes view to see uncommitted
+  diffs` hint, and the no-selection state shows `Select a commit to view
+  changed files`;
+- the paging footer mirrors the GUI: a clickable `Load more…` button
+  alongside the near-the-end auto-load, a spinner while a page is in flight
+  and the `end of history` marker at the bottom;
+- the detail panel gains the commit meta block (subject over
+  `hash · author · date`) above the changed files and the diff, and keeps the
+  cherry-pick action and the file-history overlay;
+- the file-history, n/p, Ctrl+d/u and reset bindings are inert on the
+  uncommitted row, where there is no commit to act on.
+
+Tests: a new `history-parity.test.tsx` covers the filter bar labels and
+switching, row content (graph, refs, hash, author, date), the detail meta
+block with files and diff, the uncommitted row (keyboard and click), the
+empty state, the load-more button with the end marker and wheel scrolling;
+`history-layout`/`history-format` cover the new pure helpers.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
