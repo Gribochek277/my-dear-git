@@ -1,0 +1,28 @@
+repository: serhii/my-dear-git
+commit: a5c00bd95f80a56a5abeaabfae24e5c7d91d9002
+date: 2026-10-11T05:38:34+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Fix the selection state overwriting badge and branch tones
+The file row spread its badge tone and then set `inverse` from the selection
+state, which cleared the badge's own reverse marker on an unselected row: the
+`A` badge of a staged new file rendered with no attribute at all, and the
+documented "one attribute per status" rule held for no badge in that state.
+The tone now sits on an inner Text so the selection inverse composes with it
+instead of replacing it, the pattern the history detail rows already use.
+
+The sidebar branch row had the same shape: `bold` came after the tone spread,
+so a busy branch lost the warning attribute. The tone now carries the state's
+emphasis and nothing overrides it.
+
+New monochrome assertions cover an unselected `A` badge (reverse video), a
+selected row (selection highlight over the badge), and a busy branch row
+(bold); all three fail against the previous code.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
