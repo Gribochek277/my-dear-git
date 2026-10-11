@@ -1,0 +1,15 @@
+repository: serhii/my-dear-git
+commit: db2f333eaa7e2e7a1f2ffa1f19aff2a9272b2430
+date: 2026-10-11T19:10:56+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Advertise comma for the status-bar settings entry
+The status bar labelled its settings affordance [s] Settings, but a focused Stashes section shadows s with stash-push; the comma is the unshadowed dialog key. The label and the DialogsLayer comment now say so, while s remains a convenience alias.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
