@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: a1766553d15435be796957372ea888b745e802ca
+date: 2026-10-11T20:52:52+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Document the parity TUI: layout, monochrome mode, key and mouse tables
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
