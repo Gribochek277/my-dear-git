@@ -1,0 +1,38 @@
+repository: serhii/my-dear-git
+commit: 636a8e82d5e405302434bdb189058c282bcd025f
+date: 2026-10-11T11:10:38+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Match the TUI changes view to the GUI layout
+Port the GUI's StatusView/FileListSection/DiffViewer details onto the
+parity shell's framed columns:
+
+- Section titles are the GUI's (`Staged Changes`, `Unstaged Changes`,
+  `Untracked Files`) with their counts and collapse markers, and a clean
+  working tree shows `Clean working tree` centred in the viewport.
+- The file-list header keeps the branch with its tracking distance and
+  gains the GUI's always-visible `[Unstage all] [Stage all] refresh`
+  actions: bold while enabled, dim while not, compact glyphs in a column
+  too narrow for the words. The chrome plan keeps the action row on the
+  seven rows the 80x24 shell leaves the list.
+- The diff header now carries the file path, its `(staged)`/`(untracked)`
+  marker, the `+n -n` counts and the hunk position; the second row keeps
+  the line and cursor counters. The empty state is the GUI's
+  `Select a file to view diff`.
+- PaneActionButton gains the bold enabled state used by the header
+  actions; TextEntry renders the whole placeholder while the field is
+  unfocused, so the commit panel reads `> Commit message…` instead of
+  `> ommit message…` in the live shell.
+
+Tests cover the commit-panel geometry inside the file-list column, the
+section titles and counts, the header action states, the diff header
+counts, the centred clean state, the narrow-column fallback, the short
+pane chrome and the commit placeholder at 120 and 80 columns.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
