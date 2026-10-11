@@ -1,0 +1,27 @@
+repository: serhii/my-dear-git
+commit: 609b18416fbcf95025057598625f4ae93306f3bd
+date: 2026-10-11T04:48:40+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Add the TUI monochrome kit: tone map, framed Panel, draggable divider
+The TUI is monochrome by default from here on. src/tui/theme.ts owns the
+semantic tone roles: monochrome maps them to ink attributes (bold, dim,
+underline, inverse) and glyphs, and only --color / MYDEARGIT_TUI_COLOR=1
+switches them to ANSI colours. Panel draws a titled box-drawing frame that
+fills its rect exactly (long titles truncate with an ellipsis, children clip
+inside the frame, focus is a bold frame against a dim unfocused one), and
+ResizeDivider is the one-cell draggable line with an inverse affordance while
+dragging and Esc-to-cancel.
+
+Every TUI view is swept off direct colour props onto tone(): diff rows carry
+the +/- sign with bold/dim, graph lanes draw bold nodes against dim lanes and
+badges use one attribute per status. The text-entry placeholder is drawn in
+repo as well, so ink-text-input's grey placeholder code never reaches a frame.
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
