@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: 4b47a29553b395049b006d2b234f21fb3e319990
+date: 2026-10-12T16:17:48+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Document running the TUI from the installed app
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
