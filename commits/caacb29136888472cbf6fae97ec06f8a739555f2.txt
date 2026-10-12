@@ -1,0 +1,14 @@
+repository: serhii/my-dear-git
+commit: caacb29136888472cbf6fae97ec06f8a739555f2
+date: 2026-10-12T16:17:48+03:00
+author: Serhii <36171312+Gribochek277@users.noreply.github.com>
+branches: main
+
+message:
+Dispatch the tui subcommand before the GUI starts
+
+---
+Source code is NOT published on GitHub.
+My code is hosted on a private server - this repository only reflects my working activity.
+README (if any) is available in the repo root.
+If you need the code, email: sergeyalpatov1@gmail.com
