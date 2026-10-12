@@ -1,7 +1,7 @@
 > Sanitized mirror of Forgejo `serhii/my-dear-git`. Source code is not published here.
 >
 > Commit texts: `commits/`. Need the code? Email: sergeyalpatov1@gmail.com
-> Source: Forgejo `serhii/my-dear-git` | Synced: 2026-10-16T02:36:29Z
+> Source: Forgejo `serhii/my-dear-git` | Synced: 2026-10-16T03:11:03Z
 
 ---
 
@@ -71,7 +71,11 @@ node dist/tui/cli.mjs tui --repo ~/projects/my-dear-git
 my-dear-git tui
 ```
 
-`npm run dev:tui` builds and launches in one step. The TUI mirrors the GUI's
+`npm run dev:tui` builds and launches in one step. The installed app runs the
+same command: the Electron launcher hands the `tui` subcommand to the bundled
+client before it opens a window, so `my-dear-git tui --repo <path>` works from
+the packaged AppImage as well (rebuild and reinstall with `make install` to pick
+this up in an existing install). The TUI mirrors the GUI's
 layout and chrome, is keyboard-first with full mouse support (click,
 double-click, wheel, drag-resize), reuses the GUI's Zustand stores and the
 shared Git service, and stores its settings in the same `settings.json` the GUI
@@ -111,7 +115,8 @@ npm run build
 make build
 ```
 
-Output: `dist/main/`, `dist/preload/`, `dist/renderer/`.
+Output: `dist/main/`, `dist/preload/`, `dist/renderer/`, and the terminal bundle
+`dist/tui/`.
 
 ## Package installer (.exe / .AppImage)
 
@@ -149,7 +154,7 @@ npm run package
 
 Notes:
 
-- `npm run build` only creates the app bundles in `dist/main/`, `dist/preload/`, and `dist/renderer/`.
+- `npm run build` creates the app bundles in `dist/main/`, `dist/preload/`, `dist/renderer/` and the terminal bundle in `dist/tui/`.
 - `npm run package*` first runs `npm run build`, then packages installers/artifacts with `electron-builder`.
 - Windows local packaging uses `-c.win.signAndEditExecutable=false` to avoid `rcedit`/`winCodeSign` extraction failures on systems where symlink creation is restricted.
 - Cross-building is not guaranteed for every target on every host OS. The most reliable approach is:
